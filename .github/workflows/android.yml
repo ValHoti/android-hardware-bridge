@@ -19,9 +19,9 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Instalo Paketet e Node
+      - name: Instalo Paketet me Legacy Peer Deps
         run: |
-          npm install
+          npm install --legacy-peer-deps
 
       - name: Siguro dosjen e Uebit (Kritike)
         run: |
