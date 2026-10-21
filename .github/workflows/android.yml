@@ -13,11 +13,11 @@ jobs:
         with:
           node-version: 22
 
-      - name: Konfiguro Java (JDK 17)
+      - name: Konfiguro Java (JDK 21)
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '21'
 
       - name: Instalo Paketet me Legacy Peer Deps
         run: |
