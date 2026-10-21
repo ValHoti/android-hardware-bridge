@@ -33,6 +33,23 @@ jobs:
           npx cap add android || true
           npx cap sync android
 
+      - name: Injekto Lejet e Harduerit (GPS, Kamera, NFC)
+        run: |
+          MANIFEST_PATH="android/app/src/main/AndroidManifest.xml"
+          if [ -f "$MANIFEST_PATH" ]; then
+            # Shto lejet për GPS (Fine dhe Coarse)
+            sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" \/>' $MANIFEST_PATH
+            sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" \/>' $MANIFEST_PATH
+            # Shto lejet për Kamerën (QR Reader)
+            sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.CAMERA" \/>' $MANIFEST_PATH
+            # Shto lejet për NFC Reader (që ta kesh gati për të ardhmen)
+            sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.NFC" \/>' $MANIFEST_PATH
+            echo "Lejet e harduerit u injektuan me sukses brenda AndroidManifest.xml"
+          else
+            echo "ERROR: AndroidManifest.xml nuk u gjet!"
+            exit 1
+          fi
+
       - name: Ndërto skedarin APK përmes Gradle
         run: |
           cd android
