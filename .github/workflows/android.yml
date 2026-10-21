@@ -33,6 +33,24 @@ jobs:
           npx cap add android || true
           npx cap sync android
 
+      - name: Regjistro Modulin e NFC ne MainActivity (Kritike)
+        run: |
+          MAIN_ACTIVITY="android/app/src/main/java/com/kompaniajote/hardwarebridge/MainActivity.java"
+          if [ -f "$MAIN_ACTIVITY" ]; then
+            # Shto importin e modulit Capgo NFC në MainActivity
+            sed -i '/import com.getcapacitor.BridgeActivity;/a import foo.bar.capacitor.nfc.CapgoNfcPrimary;' $MAIN_ACTIVITY
+            # Regjistro plugin-in brenda onCreate (ose siguro inicializimin)
+            sed -i '/public class MainActivity extends BridgeActivity/a \  @Override\n  public void onCreate(android.os.Bundle savedInstanceState) {\n    registerPlugin(foo.bar.capacitor.nfc.CapgoNfcPrimary.class);\n    super.onCreate(savedInstanceState);\n  }' $MAIN_ACTIVITY
+            echo "MainActivity u përditësua me sukses!"
+          else
+            # Nëse është strukturë tjetër dosjesh, provojmë kërkimin dinamik
+            MAIN_FILE=$(find android/ -name "MainActivity.java")
+            if [ -f "$MAIN_FILE" ]; then
+              sed -i '/import com.getcapacitor.BridgeActivity;/a import foo.bar.capacitor.nfc.CapgoNfcPrimary;' $MAIN_FILE
+              echo "MainActivity dinamike u përditësua!"
+            fi
+          fi
+
       - name: Injekto Lejet e Harduerit (GPS, Kamera, NFC, Bluetooth)
         run: |
           MANIFEST_PATH="android/app/src/main/AndroidManifest.xml"
