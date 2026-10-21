@@ -8,13 +8,13 @@ jobs:
       - name: Shkarko Kodin e Projektit
         uses: actions/checkout@v4
 
-      - name: Instalo Node.js Moderne
+      - name: Instalo Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Instalo Java 17 Moderne
-        uses: actions/setup-java@v5
+      - name: Instalo Java (JDK 17)
+        uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '17'
@@ -23,21 +23,27 @@ jobs:
         run: |
           npm install
 
-      - name: Siguro dosjen e Uebit
+      - name: Siguro dosjen e Uebit (Kritike)
         run: |
           mkdir -p www
           echo '<!DOCTYPE html><html><head><title>Bridge</title></head><body><h1>OK</h1></body></html>' > www/index.html
 
-      - name: Inicializo Platformen Android
+      - name: Ndërto Projektin e Capacitor nga E Para
         run: |
+          npx cap android create || true
           npx cap add android || true
           npx cap sync android
 
       - name: Ndërto skedarin APK përmes Gradle
         run: |
-          cd android
-          chmod +x gradlew
-          ./gradlew assembleDebug --stacktrace --info
+          if [ -d "android" ]; then
+            cd android
+            chmod +x gradlew
+            ./gradlew assembleDebug
+          else
+            echo "ERROR: Dosja native 'android' nuk u krijua dot nga Capacitor!"
+            exit 1
+          fi
 
       - name: Ruaj skedarin APK e gatshme
         uses: actions/upload-artifact@v4
