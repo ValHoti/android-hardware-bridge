@@ -4,12 +4,12 @@
   "description": "Kontejner WebView me Ura Harduerike",
   "main": "index.js",
   "dependencies": {
-    "@capacitor/core": "^7.0.0",
-    "@capacitor/cli": "^7.0.0",
-    "@capacitor/android": "^7.0.0",
-    "@capacitor/geolocation": "^7.0.0",
-    "@capacitor-mlkit/barcode-scanning": "^7.0.0",
-    "@capacitor-community/bluetooth-le": "^7.0.0",
-    "@capgo/capacitor-nfc": "^7.0.0"
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/geolocation": "^6.0.0",
+    "@capacitor-mlkit/barcode-scanning": "^6.0.0",
+    "@capacitor-community/bluetooth-le": "^6.0.0",
+    "@exxili/capacitor-nfc": "^0.0.14"
   }
 }
