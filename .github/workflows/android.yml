@@ -19,9 +19,9 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Instalo Paketet e Node
+      - name: Instalo Paketet me Legacy Peer Deps
         run: |
-          npm install
+          npm install --legacy-peer-deps
 
       - name: Siguro dosjen e Uebit (Kritike)
         run: |
@@ -33,18 +33,23 @@ jobs:
           npx cap add android || true
           npx cap sync android
 
-      - name: Injekto Lejet e Harduerit (GPS, Kamera, NFC)
+      - name: Injekto Lejet e Harduerit (GPS, Kamera, NFC, Bluetooth)
         run: |
           MANIFEST_PATH="android/app/src/main/AndroidManifest.xml"
           if [ -f "$MANIFEST_PATH" ]; then
-            # Shto lejet për GPS (Fine dhe Coarse)
+            # GPS
             sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" \/>' $MANIFEST_PATH
             sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" \/>' $MANIFEST_PATH
-            # Shto lejet për Kamerën (QR Reader)
+            # Kamera
             sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.CAMERA" \/>' $MANIFEST_PATH
-            # Shto lejet për NFC Reader (që ta kesh gati për të ardhmen)
+            # NFC
             sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.NFC" \/>' $MANIFEST_PATH
-            echo "Lejet e harduerit u injektuan me sukses brenda AndroidManifest.xml"
+            # Bluetooth
+            sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.BLUETOOTH" \/>' $MANIFEST_PATH
+            sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" \/>' $MANIFEST_PATH
+            sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" \/>' $MANIFEST_PATH
+            sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" \/>' $MANIFEST_PATH
+            echo "Te gjitha lejet native u injektuan me sukses!"
           else
             echo "ERROR: AndroidManifest.xml nuk u gjet!"
             exit 1
