@@ -1,7 +1,7 @@
 {
   "name": "android-hardware-bridge",
   "version": "1.0.0",
-  "description": "Kontejner WebView me Ura Harduerike, Bluetooth dhe NFC",
+  "description": "Kontejner WebView me Ura Harduerike",
   "main": "index.js",
   "dependencies": {
     "@capacitor/core": "^6.0.0",
