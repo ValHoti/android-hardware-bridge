@@ -22,7 +22,11 @@ jobs:
       - name: Instalo Paketat
         run: |
           npm install
+
+      - name: Siguro dosjen e Uebit (Kritike për Capacitor)
+        run: |
           mkdir -p www
+          echo '<!DOCTYPE html><html><head><title>Bridge</title></head><body><h1>OK</h1></body></html>' > www/index.html
 
       - name: Shto Platformen Android
         run: |
