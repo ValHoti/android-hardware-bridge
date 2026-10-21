@@ -13,11 +13,11 @@ jobs:
         with:
           node-version: 22
 
-      - name: Konfiguro Java (JDK 21)
+      - name: Konfiguro Java (JDK 17)
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '21'
+          java-version: '17'
 
       - name: Instalo Paketet e Node
         run: |
