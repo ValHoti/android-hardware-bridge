@@ -8,38 +8,38 @@ jobs:
       - name: Shkarko Kodin e Projektit
         uses: actions/checkout@v4
 
-      - name: Konfiguro Node.js Moderne (Node 24)
+      - name: Instalo Node.js Moderne
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 22
 
-      - name: Konfiguro Java Moderne (JDK 17)
-        uses: actions/setup-java@v4
+      - name: Instalo Java 17 Moderne
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu'
           java-version: '17'
 
-      - name: Instalo Paketat e Projektit
+      - name: Instalo Paketet e Node
         run: |
           npm install
 
-      - name: Siguro Strukturen e Dosjes www (Kritike)
+      - name: Siguro dosjen e Uebit
         run: |
           mkdir -p www
-          echo '<!DOCTYPE html><html><head><title>Bridge</title></head><body><h1>Kontejneri Aktiv</h1></body></html>' > www/index.html
+          echo '<!DOCTYPE html><html><head><title>Bridge</title></head><body><h1>OK</h1></body></html>' > www/index.html
 
-      - name: Inicializo dhe Sinkronizo Platformen Android
+      - name: Inicializo Platformen Android
         run: |
           npx cap add android || true
           npx cap sync android
 
-      - name: Ndërto Skedarin APK përmes Gradle
+      - name: Ndërto skedarin APK përmes Gradle
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew assembleDebug --stacktrace --info
 
-      - name: Ruaj dhe Eksporto Skedarin APK
+      - name: Ruaj skedarin APK e gatshme
         uses: actions/upload-artifact@v4
         with:
           name: Aplikacioni-yt-Gati
