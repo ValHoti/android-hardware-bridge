@@ -10,6 +10,6 @@
     "@capacitor/geolocation": "^6.0.0",
     "@capacitor-mlkit/barcode-scanning": "^6.0.0",
     "@capacitor-community/bluetooth-le": "^6.0.0",
-    "@capacitor-community/nfc": "6.0.0-beta.1"
+    "@kamilbiela/capacitor-nfc": "^6.0.0"
   }
 }
