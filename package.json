@@ -1,0 +1,16 @@
+{
+  "name": "android-hardware-bridge",
+  "version": "1.0.0",
+  "description": "Kontejner WebView me Ura Harduerike",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo 'No build step needed for plain HTML'"
+  },
+  "dependencies": {
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/cli": "^6.0.0",
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/geolocation": "^6.0.0",
+    "@capacitor-community/barcode-scanner": "^6.0.0"
+  }
+}
