@@ -100,15 +100,18 @@ jobs:
           name: Aplikacioni-yt-Gati
           path: android/app/build/outputs/apk/debug/app-debug-signed.apk
 
-      # HAPI I RI: Publikimi automatik në GitHub Releases për çdo push
+        # HAPI I RREGULLUAR: Publikimi automatik në GitHub Releases për çdo push
       - name: Publiko Release-in në GitHub
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # Krijohet një tag unik automatik bazuar në numrin e ekzekutimit (psh: build-1, build-2)
           TAG_NAME="build-${{ github.run_number }}"
           
+          # Fshin release-in/tag-un e vjetër lokal nëse ekziston (zëvendëson --clobber në mënyrë të sigurt)
+          gh release delete "$TAG_NAME" --y || true
+          
+          # Krijon faqen zyrtare të Release dhe ngarkon APK-në e nënshkruar automatikisht
           gh release create "$TAG_NAME" android/app/build/outputs/apk/debug/app-debug-signed.apk \
             --title "Android APK (Build #${{ github.run_number }})" \
-            --notes "Ky është një ndërtim automatik nga dega: ${{ github.ref_name }}. Commit SHA: ${{ github.sha }}" \
-            --clobber
+            --notes "Ky është një ndërtim automatik nga dega: ${{ github.ref_name }}. Commit SHA: ${{ github.sha }}"
+
