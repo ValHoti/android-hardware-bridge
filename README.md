@@ -1,8 +1,10 @@
 # Android OS Hardware Bridge
 
-1. GPS location
-2. 2D Barcode Scanner
-3. NFC Reader
-4. BLE Printer print
+| No  | Description |
+| ------------- |:-------------:|
+| 1     | GPS location via GPS Sensor     |
+| 2     | 2D Barcode Scan via Camera     |
+| 3     | NFC Card Read via NFC Module    |
+| 4     | BLE Printer Print     |
 
 via pure HTML <div class>
