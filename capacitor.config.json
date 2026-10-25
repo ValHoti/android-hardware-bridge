@@ -1,6 +1,6 @@
 {
-  "appId": "com.kompaniajote.hardwarebridge",
-  "appName": "OS Hardware Bridge",
+  "appId": "com.bitcom.hardwarebridge",
+  "appName": "BIT Hardware Bridge",
   "webDir": "www",
   "server": {
     "url": "http://192.168.192.168",
