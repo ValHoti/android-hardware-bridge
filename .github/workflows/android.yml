@@ -88,6 +88,14 @@ jobs:
           npx cap add android || true
           npx cap sync android
 
+      - name: Gjenero ikonat Android nga logoja BIT
+        run: |
+          npx --yes @capacitor/assets@3.0.5 generate \
+            --android \
+            --assetPath . \
+            --iconBackgroundColor '#063D24' \
+            --iconBackgroundColorDark '#063D24'
+
       - name: Injekto Lejet e Harduerit (GPS, Kamera, NFC, Bluetooth)
         run: |
           MANIFEST_PATH="android/app/src/main/AndroidManifest.xml"
